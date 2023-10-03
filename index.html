@@ -1,28 +1,105 @@
-<!doctype html>
-<html lang="en">
-
-<head>
-  <meta charset="utf-8">
-  <meta name="viewport" content="width=device-width, initial-scale=1.0, viewport-fit=cover" />
-  <meta name="Description" content="Put your description here.">
-  <base href="/">
-
-  <style>
-    html,
-    body {
-      margin: 0;
-      padding: 0;
-      font-family: sans-serif;
-      background-color: #ededed;
-    }
-  </style>
-  <title>last-try</title>
-</head>
-
-<body>
-  <last-try></last-try>
-
-  <script type="module" src="./src/last-try.js"></script>
-</body>
-
+<html>
+  <button>Button</button>
+  <div class="all">
+      <button id="backgroundColor">Background Color</button>
+      <button id="changeText">Change Text</button>
+      <button id="delete">Delete Last Card</button>
+      <div class="card">
+          <img src="https://www.dalycollege.org/images/slider-1.jpg" >
+          <h1>Card</h1>
+          <p id="description" style="display: none;">
+              The Daly College is a group of institutions in Indore, India that includes a co-educational boarding school, a junior school, an undergraduate management school, and a postgraduate business school.
+          </p>
+          <button id="detailsButton">Details</button>
+      </div>
+  </div>
 </html>
+
+<script>
+    document.querySelector('button').addEventListener('click', (e) => {
+    const cardClone = document.querySelector('.card').cloneNode(true);
+    document.body.appendChild(cardClone);
+});
+
+document.querySelector('#backgroundColor').addEventListener('click', () => {
+    const card = document.querySelector('.card');
+    card.classList.toggle('light-mode');
+    card.classList.toggle('dark-mode');
+});
+
+document.querySelector('#changeText').addEventListener('click', () => {
+    const heading = document.querySelector('h1');
+    heading.textContent = "Something Else";
+});
+
+document.querySelector('#delete').addEventListener('click', () => {
+    const cards = document.querySelectorAll('.card');
+    if (cards.length > 1) {
+        const lastCard = cards[cards.length - 1];
+        lastCard.remove();
+    }
+});
+
+document.querySelector('#detailsButton').addEventListener('click', () => {
+    const description = document.querySelector('#description');
+    description.style.display = (description.style.display === 'none') ? 'block' : 'none';
+});
+
+</script>
+
+<style>
+  .card {
+    display: inline-block;
+    max-width: 400px;
+    margin: 0 auto;
+    text-align: center;
+    padding: 16px;
+    border: 1px solid #ccc;
+    border-radius: 8px;
+}
+
+.card img {
+    max-width: 100%;
+    height: auto;
+    width: 100%;
+    max-height: 200px;
+}
+
+.btn-wrapper {
+    margin-top: 16px;
+}
+
+.btn-wrapper button {
+    background-color: #0074D9;
+    color: #fff;
+    padding: 10px 20px;
+    border: none;
+    border-radius: 5px;
+    cursor: pointer;
+}
+
+button:hover,
+button:focus {
+    background-color: #0056b3;
+}
+
+.hidden {
+    display: none;
+}
+
+.light-mode {
+    background-color: #ffffff;
+    color: #000000;
+}
+
+.dark-mode {
+    background-color: #000000;
+    color: #ffffff;
+}
+
+@media (max-width: 800px) {
+    .btn-wrapper button {
+        display: none;
+    }
+}
+</style>
