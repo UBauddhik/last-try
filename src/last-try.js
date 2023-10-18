@@ -1,5 +1,5 @@
 import { LitElement, html, css } from 'lit';
-
+import "@lrnwebcomponents/meme-maker"
 
 class LastTry extends LitElement {
   static properties = {
@@ -160,6 +160,8 @@ render() {
   return html`
     <main>
       <div class="wrapper">
+      <meme-maker alt="Cat stalking a small toy" image-url="https://cdn2.thecatapi.com/images/9j5.jpg" top-text="I bring you" bottom-text="the death">
+      </meme-maker>
         <div class="container">
           <div class="card">
             <div class="card-content">
